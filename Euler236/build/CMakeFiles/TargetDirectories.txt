@@ -1,0 +1,3 @@
+/home/brett/CLionProjects/ProgrammingGroup/Euler236/build/CMakeFiles/rebuild_cache.dir
+/home/brett/CLionProjects/ProgrammingGroup/Euler236/build/CMakeFiles/Euler236.dir
+/home/brett/CLionProjects/ProgrammingGroup/Euler236/build/CMakeFiles/edit_cache.dir

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/brett/CLionProjects/ProgrammingGroup/Euler235/main.cpp
+iostream
+-
+iomanip
+-
+cmath
+-
+queue
+-
+sstream
+-
+

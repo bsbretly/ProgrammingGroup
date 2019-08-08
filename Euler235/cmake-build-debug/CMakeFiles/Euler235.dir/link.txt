@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Euler235.dir/main.cpp.o  -o Euler235 
