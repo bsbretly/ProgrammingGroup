@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/Euler236.dir/main.cpp.o  -o Euler236 
