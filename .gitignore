@@ -1,5 +1,5 @@
 # build files
-build/
+**/build/
 
 # Prerequisites
 *.d
@@ -32,8 +32,5 @@ build/
 # Executables
 *.exe
 *.out
-<<<<<<< HEAD
 *.app
-=======
-*.app
->>>>>>> c3606d9bacfaf6174780fbf6352da242b55f150f
+
