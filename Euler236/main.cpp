@@ -4,6 +4,8 @@
 #include <map>
 #include <algorithm>
 
+// resource here: https://stackoverflow.com/questions/35401523/searching-for-multiple-elements-using-stdfind
+
 using namespace std;
 
 struct per_product_spoilage
