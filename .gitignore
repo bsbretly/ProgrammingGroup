@@ -34,3 +34,6 @@
 *.out
 *.app
 
+# CLion project specific settings files
+*.idea
+

@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <queue>
 #include <map>
+#include <algorithm>
 
 using namespace std;
 
@@ -104,32 +105,31 @@ int main() {
     }
 
     map<float, vector<per_product_spoilage>>::iterator it;
-//    for (it = ratio_map.begin(); it != ratio_map.end(); ++it) {
-//        cout << "m = " << it->first << ":" << '\t'
-//             << it->second
-//             << "with size " << it->second.size()
-//             << endl;
-//    }
+    for (it = ratio_map.begin(); it != ratio_map.end(); ++it) {
+        cout << "m = " << it->first << ":" << '\t'
+             << it->second
+             << "with size " << it->second.size()
+             << endl;
+    }
 
     for (it = ratio_map.begin(); it != ratio_map.end(); ++it) {
-        if (it->second.size() == 3) {
-//            cout << "prod: " << it->second[0].prod << endl;
-            if (it->second[0].prod == 0 && it->second[1].prod == 1 && it->second[2].prod == 2) {
-                //spoilage sum
-//                cout << "a_sum_s = " << it->second[0].a << "+" << it->second[1].a << "+" << it->second[2].a
-//                     << endl;
-                int a_sum_s = it->second[0].a + it->second[1].a + it->second[2].a;
-//                cout << "a_sum_s = " << a_sum_s << endl;
-//                cout << "a_sum = " << a_sum << endl;
-                int b_sum_s = it->second[0].b + it->second[1].b + it->second[2].b;
+        if (it->second.size() >= product_total) {
+            //check that we have a spoilage number for each product
 
-                m_t_num = a_sum_s*b_sum / gcd(a_sum_s*b_sum,b_sum_s*a_sum);
-                m_t_den = b_sum_s*a_sum / gcd(a_sum_s*b_sum,b_sum_s*a_sum);
-//                cout << "m_t_num = " << m_t_num << '\t'
-//                     << "m_t_den = " << m_t_den
-//                     << endl;
-                break;
-            }
+            vector<per_product_spoilage>:: iterator check;
+            check = find_if(it->second.begin(), it->second.end(), [](per_product_spoilage x) {
+                return x.prod == 0;
+            });
+
+            cout << "p = " << check->prod <<endl;
+
+            int a_sum_s = it->second[0].a + it->second[1].a + it->second[2].a;
+            int b_sum_s = it->second[0].b + it->second[1].b + it->second[2].b;
+            m_t_num = a_sum_s*b_sum / gcd(a_sum_s*b_sum,b_sum_s*a_sum);
+            m_t_den = b_sum_s*a_sum / gcd(a_sum_s*b_sum,b_sum_s*a_sum);
+
+            break;
+
         }
     }
 
