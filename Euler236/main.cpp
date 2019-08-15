@@ -106,35 +106,42 @@ int main() {
         }
     }
 
-    map<float, vector<per_product_spoilage>>::iterator it;
-    for (it = ratio_map.begin(); it != ratio_map.end(); ++it) {
-        cout << "m = " << it->first << ":" << '\t'
-             << it->second
-             << "with size " << it->second.size()
+    map<float, vector<per_product_spoilage>>::iterator vec_it;
+    for (vec_it = ratio_map.begin(); vec_it != ratio_map.end(); ++vec_it) {
+        cout << "m = " << vec_it->first << ":" << '\t'
+             << vec_it->second
+             << "with size " << vec_it->second.size()
              << endl;
     }
 
-    for (it = ratio_map.begin(); it != ratio_map.end(); ++it) {
-        if (it->second.size() >= product_total) {
-            //check that we have a spoilage number for each product
+    //for ratio map
+    for (vec_it = ratio_map.begin(); vec_it != ratio_map.end(); ++vec_it) {
+        //check that we have a spoilage occurrence for each product
+        if (vec_it->second.size() >= product_total) {
+            //first product must be product 0
+            if (vec_it->second[0].prod == 0) {
+                //for each product, starting with product 1
+                for (int i = 1; i < product_total; i++) {
+                    //for length of pps vector, starting with vector 1
+                    for (int j = 1; j < (int) vec_it->second.size(); j++) {
+                        //search for product i in pps vector
+                        if (vec_it->second[j].prod == i) {
+                            //calculate m_t (total m ratio) for each possible pps value and ensure it is equal to m
 
-            vector<per_product_spoilage>:: iterator check;
-            check = find_if(it->second.begin(), it->second.end(), [](per_product_spoilage x) {
-                return x.prod == 0;
-            });
+                            cout << "product " << i << " " << "found for m = "
+                                 << vec_it->first << endl;
+                        }
+                    }
+                }
+            }
 
-            cout << "p = " << check->prod <<endl;
-
-            int a_sum_s = it->second[0].a + it->second[1].a + it->second[2].a;
-            int b_sum_s = it->second[0].b + it->second[1].b + it->second[2].b;
-            m_t_num = a_sum_s*b_sum / gcd(a_sum_s*b_sum,b_sum_s*a_sum);
-            m_t_den = b_sum_s*a_sum / gcd(a_sum_s*b_sum,b_sum_s*a_sum);
-
-            break;
-
+//            int a_sum_s = it->second[0].a + it->second[1].a + it->second[2].a;
+//            int b_sum_s = it->second[0].b + it->second[1].b + it->second[2].b;
+//            m_t_num = a_sum_s * b_sum / gcd(a_sum_s * b_sum, b_sum_s * a_sum);
+//            m_t_den = b_sum_s * a_sum / gcd(a_sum_s * b_sum, b_sum_s * a_sum);
         }
     }
 
-    cout << m_t_num << "/" << m_t_den << endl;
+//    cout << m_t_num << "/" << m_t_den << endl;
     return 0;
 }
