@@ -23,6 +23,17 @@ ostream& operator<< (ostream &out, vector<per_product_spoilage> &pps)
     return out;
 }
 
+ostream& operator<< (ostream &out, vector<int> &vec)
+{
+    out << "product_number = [ ";
+    for(auto it = vec.begin(); it != vec.end(); ++it) {
+        out << *it << " ";
+    }
+    out << "]";
+    return out;
+}
+
+
 //greatest common divisor
 int gcd(int a, int b) {
     if (b == 0)
@@ -120,9 +131,9 @@ int main() {
         if (map_it->second.size() >= product_total) {
             //first product must be product 0
             if (map_it->second[0].prod == 0) {
-                //for each product, starting with product 1
-                vector<int> product_number(product_total);
-                for (int i = 1; i < product_total; i++) {
+                //for each product, starting with product 0
+                vector<int> product_number;
+                for (int i = 0; i < product_total; i++) {
                     //for length of pps vector, starting with index 1
                     for (int j = 1; j < (int)map_it->second.size(); j++) {
                         //search for product i in pps vector
@@ -134,8 +145,14 @@ int main() {
                         }
                     }
                 }
+                vector<int> candidate_m_tot;
                 if (product_number.size() >= product_total - 1) {
+                    cout << product_number << endl;
                     cout << "Candidate m value = " << map_it->first << endl;
+                    //calculate candidate m_tot for each spoilage count
+                    auto it = ratio_map.find(map_it->first);
+                    if (it != ratio_map.end()) {
+                    }
                 }
 
             }
