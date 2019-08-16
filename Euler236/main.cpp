@@ -106,33 +106,38 @@ int main() {
         }
     }
 
-    map<float, vector<per_product_spoilage>>::iterator vec_it;
-    for (vec_it = ratio_map.begin(); vec_it != ratio_map.end(); ++vec_it) {
-        cout << "m = " << vec_it->first << ":" << '\t'
-             << vec_it->second
-             << "with size " << vec_it->second.size()
+    map<float, vector<per_product_spoilage>>::iterator map_it;
+    for (map_it = ratio_map.begin(); map_it != ratio_map.end(); ++map_it) {
+        cout << "m = " << map_it->first << ":" << '\t'
+             << map_it->second
+             << "with size " << map_it->second.size()
              << endl;
     }
 
     //for ratio map
-    for (vec_it = ratio_map.begin(); vec_it != ratio_map.end(); ++vec_it) {
+    for (map_it = ratio_map.begin(); map_it != ratio_map.end(); ++map_it) {
         //check that we have a spoilage occurrence for each product
-        if (vec_it->second.size() >= product_total) {
+        if (map_it->second.size() >= product_total) {
             //first product must be product 0
-            if (vec_it->second[0].prod == 0) {
+            if (map_it->second[0].prod == 0) {
                 //for each product, starting with product 1
+                vector<int> product_number(product_total);
                 for (int i = 1; i < product_total; i++) {
-                    //for length of pps vector, starting with vector 1
-                    for (int j = 1; j < (int) vec_it->second.size(); j++) {
+                    //for length of pps vector, starting with index 1
+                    for (int j = 1; j < (int)map_it->second.size(); j++) {
                         //search for product i in pps vector
-                        if (vec_it->second[j].prod == i) {
+                        if (map_it->second[j].prod == i) {
                             //calculate m_t (total m ratio) for each possible pps value and ensure it is equal to m
-
-                            cout << "product " << i << " " << "found for m = "
-                                 << vec_it->first << endl;
+//                            cout << "product " << i << " " << "found for m = "
+//                                 << map_it->first << endl;
+                            product_number.push_back(i);
                         }
                     }
                 }
+                if (product_number.size() >= product_total - 1) {
+                    cout << "Candidate m value = " << map_it->first << endl;
+                }
+
             }
 
 //            int a_sum_s = it->second[0].a + it->second[1].a + it->second[2].a;
