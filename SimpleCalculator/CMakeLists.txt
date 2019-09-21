@@ -3,4 +3,4 @@ project(SimpleCalculator)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(SimpleCalculator main.cpp)
+add_executable(SimpleCalculator main.cpp simpleCalculator.h)

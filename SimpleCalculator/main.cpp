@@ -1,5 +1,6 @@
 #include <iostream>
 #include <bits/stdc++.h>
+#include "simpleCalculator.h"
 
 class Calculator {
 public:
@@ -51,7 +52,7 @@ public:
             case '*':
                 return int_vector_[0] * int_vector_[1];
             case '/':
-                return int_vector_[0] / int_vector_[1];
+                return std::trunc(int_vector_[0] / int_vector_[1]);
         }
     }
 
@@ -73,7 +74,11 @@ private:
 };
 
 int main() {
-    std::string test_string = "3+2";
+    std::string test_string = "9/2";
     Calculator calc;
     std::cout<<calc.calculate(test_string)<<std::endl;
+
+    SimpleCalculator<int> simpleCalc;
+    int result2 = simpleCalc.eval(" 0+5 / 2 *10 ");
+    std::cout<<result2<<std::endl;
 }
