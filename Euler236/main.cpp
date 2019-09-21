@@ -33,7 +33,6 @@ ostream& operator<< (ostream &out, vector<int> &vec)
     return out;
 }
 
-
 //greatest common divisor
 int gcd(int a, int b) {
     if (b == 0)

@@ -1,4 +1,4 @@
-# build files
+#build files
 **/build/
 
 # Prerequisites
@@ -36,4 +36,4 @@
 
 # CLion project specific settings files
 **/.idea/
-
+**/cmake-build-debug/
