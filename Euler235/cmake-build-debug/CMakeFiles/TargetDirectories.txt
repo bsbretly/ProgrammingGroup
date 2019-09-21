@@ -1,3 +1,0 @@
-/home/brett/CLionProjects/ProgrammingGroup/Euler235/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/brett/CLionProjects/ProgrammingGroup/Euler235/cmake-build-debug/CMakeFiles/Euler235.dir
-/home/brett/CLionProjects/ProgrammingGroup/Euler235/cmake-build-debug/CMakeFiles/edit_cache.dir
