@@ -74,11 +74,26 @@ private:
 };
 
 int main() {
-    std::string test_string = "9/2";
-    Calculator calc;
-    std::cout<<calc.calculate(test_string)<<std::endl;
+    //my own shitty calculator
+//    std::string test_string = "9/2";
+//    Calculator calc;
+//    std::cout<<calc.calculate(test_string)<<std::endl;
 
+    //the good stuff
     SimpleCalculator<int> simpleCalc;
-    int result2 = simpleCalc.eval(" 0+5 / 2 *10 ");
-    std::cout<<result2<<std::endl;
+    int result2 = simpleCalc.eval("(12*2)/2");
+    std::cout<<"RESULT: "<<result2<<std::endl;
+
+
+//int L_int = 'L';
+//int R_int = 'R';
+//std::cout<<"L_int = "<<L_int<<std::endl;
+//std::cout<<"R_int = "<<R_int<<std::endl;
+
+//char c = '8';
+//int test = c - '0';
+//std::cout<<"test = "<<test<<std::endl;
+
+//char noDigit = 0xf + 1;
+//std::cout<<"noDigit = "<<noDigit<<std::endl;
 }

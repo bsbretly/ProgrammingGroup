@@ -73,18 +73,6 @@ private:
     /// top of the stack has lower precedence.
     std::stack<OperatorValue> stack_;
 
-    T checkZero(T value) const
-    {
-        if (value == 0)
-        {
-            std::string divOperators("/%");
-            std::size_t division = expr_.find_last_of(divOperators, index_ - 2);
-            std::ostringstream msg;
-            msg << "Parser error: division by 0";
-        }
-        return value;
-    }
-
     T calculate(T v1, T v2, const Operator& op) const
     {
         switch (op.op)
@@ -92,7 +80,7 @@ private:
             case OPERATOR_ADDITION:       return v1 + v2;
             case OPERATOR_SUBTRACTION:    return v1 - v2;
             case OPERATOR_MULTIPLICATION: return v1 * v2;
-            case OPERATOR_DIVISION:       return v1 / checkZero(v2);
+            case OPERATOR_DIVISION:       return v1 / v2;
             default:                      return 0;
         }
     }
@@ -131,6 +119,7 @@ private:
     static T toInteger(char c)
     {
         if (c >= '0' && c <= '9') return c -'0';
+//        std::cout<<"returning no digit"<<std::endl;
         T noDigit = 0xf + 1;
         return noDigit;
     }
@@ -143,8 +132,11 @@ private:
     T parseDecimal()
     {
         T value = 0;
-        for (T d; (d = getInteger()) <= 9; index_++)
+        for (T d; (d = getInteger()) <= 9; index_++) {
+//            std::cout << "d = " << d << std::endl;
             value = value * 10 + d;
+//            std::cout << "value = " << value << std::endl;
+        }
         return value;
     }
 
@@ -154,11 +146,8 @@ private:
         eatSpaces();
         switch (getCharacter())
         {
-            case '0':
-                val = parseDecimal();
-                break;
-            case '1': case '2': case '3': case '4': case '5':
-            case '6': case '7': case '8': case '9':
+            case '0': case '1': case '2': case '3': case '4':
+            case '5': case '6': case '7': case '8': case '9':
                 val = parseDecimal();
                 break;
             case '(': index_++;
@@ -182,6 +171,8 @@ private:
 
         while (!stack_.empty())
         {
+//            std::cout << "index_ = "<<index_<<std::endl;
+//            std::cout << stack_.top().value<<std::endl;
             // parse an operator (+, -, *, ...)
             Operator op(parseOp());
             while (op.precedence  < stack_.top().getPrecedence() || (
