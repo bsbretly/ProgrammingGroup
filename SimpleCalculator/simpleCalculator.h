@@ -150,12 +150,18 @@ private:
             case '5': case '6': case '7': case '8': case '9':
                 val = parseDecimal();
                 break;
-            case '(': index_++;
+            case '(':
+                index_++;
                 val = parseExpr();
                 eatSpaces();
                 index_++; break;
-            case '+': index_++; val =  parseValue(); break;
-            case '-': index_++; val =  parseValue() * static_cast<T>(-1);
+            case '+':
+                index_++;
+                val =  parseValue();
+                break;
+            case '-':
+                index_++;
+                val =  parseValue() * static_cast<T>(-1);
                 break;
             default :
                 std::cout<<"Syntax error: value expected at end of expression"<<std::endl;
@@ -167,7 +173,9 @@ private:
     {
         stack_.push(OperatorValue(Operator(OPERATOR_NULL, 0, 'L'), 0));
         // first parse value on the left
+        std::cout<<"stack_.top().value = "<<stack_.top().value<<std::endl;
         T value = parseValue();
+        std::cout<<"stack_.top().value = "<<stack_.top().value<<std::endl;
 
         while (!stack_.empty())
         {
@@ -180,6 +188,7 @@ private:
                     op.associativity == 'L'))
             {
                 // end reached
+//                std::cout<<"stack_.top().value = "<<stack_.top().value<<std::endl;
                 if (stack_.top().isNull())
                 {
                     stack_.pop();
@@ -187,7 +196,7 @@ private:
                 }
                 // do the calculation ("reduce"), producing a new value
                 value = calculate(stack_.top().value, value, stack_.top().op);
-                std::cout<<"value = "<<value<<std::endl;
+//                std::cout<<"value = "<<value<<std::endl;
                 stack_.pop();
             }
 
