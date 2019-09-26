@@ -143,7 +143,7 @@ public:
             std::cout<<"value = "<<value<<std::endl;
             stack_.pop();
             // store on stack_ and continue parsing ("shift")
-            stack_.push(OperatorValue(op, value));
+//            stack_.push(OperatorValue(op, value));
             // parse value on the right
 //            value = parseValue();
         }
@@ -158,7 +158,7 @@ private:
 
 int main() {
     //my own shitty calculator
-    std::string expression = "10/2";
+    std::string expression = "10*7/2";
     Calculator calc(expression);
     std::cout<<"RESULT1: "<<calc.parseExpression()<<std::endl;
 
