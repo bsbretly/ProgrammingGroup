@@ -187,6 +187,7 @@ private:
                 }
                 // do the calculation ("reduce"), producing a new value
                 value = calculate(stack_.top().value, value, stack_.top().op);
+                std::cout<<"value = "<<value<<std::endl;
                 stack_.pop();
             }
 
