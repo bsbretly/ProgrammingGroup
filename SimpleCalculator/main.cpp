@@ -81,7 +81,7 @@ int main() {
 
     //the good stuff
     SimpleCalculator<int> simpleCalc;
-    int result2 = simpleCalc.eval("(12*2)/2");
+    int result2 = simpleCalc.eval("12*2+2/2");
     std::cout<<"RESULT: "<<result2<<std::endl;
 
 
